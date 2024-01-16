@@ -4,7 +4,14 @@ import "./ChipInput.css";
 const ChipInput = ({ userContacts }) => {
   const [inputValue, setInputValue] = useState("");
   const [isSelected, setIsSelected] = useState(false);
-  const [chips, setChips] = useState(["Girinath"]);
+  const [chips, setChips] = useState([
+    {
+      name: "Girinath",
+      email: "girinath@gmail.com",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9Rb-0os2-V1LfrNaGsf9Fgpu6aUyi93Pvnw&usqp=CAU",
+    },
+  ]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [highLightInput, setHighLightInput] = useState(null);
   const [hitBackButton, setHitBackButton] = useState(false);
@@ -19,11 +26,10 @@ const ChipInput = ({ userContacts }) => {
     }
   }, [chips]);
 
-
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-
+    console.log("value", value);
     // Check if the selectedValue exists in your data
     const selectedDataItem = data.find((item) => item.email === value);
 
@@ -49,7 +55,8 @@ const ChipInput = ({ userContacts }) => {
   const handleSelection = (selectedItem) => {
     // Your custom logic when an option is selected
     console.log("Selected:", selectedItem);
-    setChips([...chips, selectedItem.name]);
+    // setChips([...chips, selectedItem.name]);
+    setChips([...chips, selectedItem]);
     setInputValue("");
   };
 
@@ -75,10 +82,18 @@ const ChipInput = ({ userContacts }) => {
   };
 
   const handleChipAdd = () => {
-    if (inputValue.trim() !== "" && !chips.includes(inputValue)) {
-      setChips([...chips, inputValue]);
+    console.log("inputValue", inputValue);
+    const selectedDataItem = data.find((item) => item.email === inputValue);
+    console.log("selectedDataItem", selectedDataItem);
+    if (selectedDataItem) {
+      setChips([...chips, selectedDataItem]);
       setInputValue("");
     }
+
+    // if (inputValue.trim() !== "" && !chips.includes(inputValue)) {
+    //   setChips([...chips, inputValue]);
+    //   setInputValue("");
+    // }
   };
 
   const handleChipClick = (chip) => {
@@ -107,7 +122,8 @@ const ChipInput = ({ userContacts }) => {
             }`}
             onClick={() => handleChipClick(chip)}
           >
-            {chip}
+            <img src={chip.image} />
+            {chip.name}
             <span
               className={`chip-remove ${
                 highLightInput === index ? "highlight-chip-remove" : ""
@@ -129,14 +145,16 @@ const ChipInput = ({ userContacts }) => {
           onKeyDown={handleInputKeyDown}
           placeholder="Type to search..."
         />
-        <datalist id="data-list" onChange={handleInputChange}>
+        <datalist id="data-list">
           {/* {data?.map((item, index) => (
             <option key={index} value={item.email}></option>
           ))} */}
           {data
             ?.filter((item) => !chips.some((chip) => chip === item.name))
             .map((item, index) => (
-              <option key={index} value={item.email}></option>
+              <option key={index} value={item.email}>
+                {item.name}
+              </option>
             ))}{" "}
         </datalist>
       </div>

@@ -10,7 +10,7 @@
 
 .chip {
   background-color: #e0e0e0;
-  padding: 4px 15px;
+  padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -46,6 +46,15 @@
 
   /* Optional: Add a background-color to the input to make it visually distinct */
   background-color: #fff;
+}
+
+.chip img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border-radius: 30px;
+  margin-right: 10px;
 }
 
 input::-webkit-calendar-picker-indicator {
