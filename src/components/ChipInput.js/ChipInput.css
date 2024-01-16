@@ -1,0 +1,53 @@
+.chips-container {
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 3px solid #407eb1;
+  /* border-radius: 4px; */
+}
+
+.chip {
+  background-color: #e0e0e0;
+  padding: 4px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.highlight-chip {
+  border: 2px solid #0b57d0;
+  color: #0b57d0;
+}
+
+.highlight-chip-remove {
+  color: #0b57d0 !important;
+}
+
+.chip-remove {
+  margin-left: 8px;
+  cursor: pointer;
+  color: #666;
+}
+
+.chip-input {
+  border: none;
+  outline: none;
+  /* width: ; */
+}
+
+.chip-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Optional: Add a background-color to the input to make it visually distinct */
+  background-color: #fff;
+}
+
+input::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
